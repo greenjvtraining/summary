@@ -1,0 +1,70 @@
+MariaDB
+
+-- AUTOCOMMIT을 확인하는 두 가지 방법 --
+첫 번째
+SELECT @@AUTOCOMMIT;
+
+두 번째
+show variables like 'autocommit%'
+
+- AUTOCOMMIT을 활성화/비활성화 하는 두 가지 방법 --
+첫 번째
+SET autocommit = 1; //활성화
+SET autocommit = 0; //비활성화
+
+두 번째
+SET autocommit = true; //활성화
+SET autocommit = false; //비활성화
+
+Windows의 경우
+C:\Program Files\MariaDB 10.10\data\my.ini
+
+[mysqld]
+autocommit=false 추가
+
+컴퓨터 다시 시작.
+- Java 코드에 추가
+//conn.setAutoCommit(false);
+
+conn.rollback();
+conn.commit();
+
+jdbc로 쿼리실행 후 HeidiSQL  세션 접속 끊고 재접속해서 자료 검색해야 변경사항 적용됨.
+
+-------------------------------------------------------------------
+사용자 추가
+
+CREATE USER ceo@'%' IDENTIFIED BY 'ceo'; 
+GRANT SELECT ON *.* TO ceo@'%';
+
+CREATE USER staff@'%' IDENTIFIED BY 'staff';
+GRANT SELECT, INSERT, UPDATE, DELETE ON ShopDB.* TO staff@'%';
+GRANT SELECT ON employees.* TO staff@'%';
+
+
+SELECT host, user, password FROM user;
+SHOW GRANTS;
+-----------------------------------------------------------------------
+정렬 ORDER BY 
+ASC
+DESC
+
+------------------------------------------------------------------------
+BETWEEN...AND
+IN( )
+
+-------------------------------------------------------------------------
+중복제거 : DISTINCT
+
+
+--------------------------------------------------------------------------
+출력 수 제한 LIMIT
+
+
+제약조건
+CHECK
+
+
+
+
+
